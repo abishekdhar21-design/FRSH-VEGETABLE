@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fresh Vegetable</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f6f8f4;color:#172116}
+header{background:#198754;color:white;padding:16px;text-align:center}
+.hero{text-align:center;padding:35px 15px;background:#e8f8ec}
+.hero h1{font-size:32px;margin:10px}
+.btn{display:inline-block;background:#198754;color:white;padding:14px 22px;
+border-radius:8px;text-decoration:none;font-weight:bold;margin:10px}
+.wrap{max-width:900px;margin:auto;padding:20px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.card{background:white;padding:18px;border-radius:12px;text-align:center;
+box-shadow:0 3px 12px #00000015}
+.emoji{font-size:45px}
+.price{font-weight:bold;color:#198754}
+footer{background:#12351f;color:white;text-align:center;padding:25px;margin-top:25px}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>🥬 Fresh Vegetable</h2>
+</header>
+
+<section class="hero">
+<h1>Fresh Vegetables at Your Doorstep</h1>
+<p>🌿 Fresh • Safe • Reliable</p>
+<p>🚚 5 KM পর্যন্ত No Delivery Charge</p>
+
+<a class="btn"
+href="https://wa.me/916290796633?text=Hello%20Fresh%20Vegetable%2C%20I%20want%20to%20order."
+target="_blank">
+📱 Order on WhatsApp
+</a>
+</section>
+
+<div class="wrap">
+
+<h2 style="text-align:center">Today's Fresh Vegetables</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="emoji">🥔</div>
+<h3>Potato</h3>
+<div class="price">₹30 / kg</div>
+</div>
+
+<div class="card">
+<div class="emoji">🍅</div>
+<h3>Tomato</h3>
+<div class="price">₹40 / kg</div>
+</div>
+
+<div class="card">
+<div class="emoji">🧅</div>
+<h3>Onion</h3>
+<div class="price">₹35 / kg</div>
+</div>
+
+<div class="card">
+<div class="emoji">🥕</div>
+<h3>Carrot</h3>
+<div class="price">₹60 / kg</div>
+</div>
+
+<div class="card">
+<div class="emoji">🍆</div>
+<h3>Brinjal</h3>
+<div class="price">₹45 / kg</div>
+</div>
+
+<div class="card">
+<div class="emoji">🥦</div>
+<h3>Cauliflower</h3>
+<div class="price">₹50 / pc</div>
+</div>
+
+</div>
+</div>
+
+<footer>
+<h3>🥬 Fresh Vegetable</h3>
+<p>📞 WhatsApp: 6290796633</p>
+<p>🚚 5 KM পর্যন্ত No Delivery Charge</p>
+</footer>
+
+</body>
+</html>
