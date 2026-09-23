@@ -1,1 +1,90 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fresh Vegetable</title><style>*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#f5f8f3;color:#17321d}header{background:#168348;color:white;padding:16px;text-align:center}.hero{text-align:center;padding:24px;background:#e9f8ec}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:15px}.card{background:white;padding:14px;border-radius:14px;text-align:center;box-shadow:0 2px 10px #0001}.emoji{font-size:48px}.price{font-weight:bold;color:#168348;margin:8px}.btn{border:0;background:#168348;color:white;padding:10px;border-radius:8px;font-weight:bold}.cart{text-align:center;position:sticky;bottom:0;background:white;padding:12px}footer{background:#12351f;color:white;text-align:center;padding:20px}@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}}</style></head><body><header><h2>🥬 Fresh Vegetable</h2></header><div class="hero"><h1>Fresh Vegetables at Your Doorstep</h1><p>🌿 Fresh • Safe • Reliable</p><p>🚚 5 KM পর্যন্ত No Delivery Charge</p></div><div id="grid" class="grid"></div><div class="cart"><b id="count">Cart: 0</b> <button class="btn" onclick="orderNow()">Order on WhatsApp</button></div><footer>📞 WhatsApp: 6290796633</footer><script type="module">import{initializeApp}from'https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js';import{getFirestore,collection,onSnapshot}from'https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js';const cfg={apiKey:'AIzaSyDid8kMizol8IuKas7t-5GGOGKdB-HZFoA',authDomain:'fresh-vegetables-c5c76.firebaseapp.com',projectId:'fresh-vegetables-c5c76',storageBucket:'fresh-vegetables-c5c76.firebasestorage.app',messagingSenderId:'833704851091',appId:'1:833704851091:web:2bb80682ea5c36c9b7bf66'};const db=getFirestore(initializeApp(cfg));const base=[['Potato','🥔',30,'kg'],['Tomato','🍅',40,'kg'],['Onion','🧅',35,'kg'],['Carrot','🥕',60,'kg'],['Brinjal','🍆',45,'kg'],['Cauliflower','🥦',50,'pc'],['Broccoli','🥦',80,'pc'],['Cabbage','🥬',35,'pc'],['Capsicum','🫑',80,'kg'],['Chilli','🌶️',80,'kg'],['Radish','🥕',50,'kg'],['Corn','🌽',40,'pc'],['Ginger','🫚',120,'kg'],['Okra','🌿',60,'kg'],['Peas','🫛',80,'kg'],['Garlic','🧄',160,'kg'],['Mushroom','🍄',60,'pack'],['Taro','🥔',60,'kg'],['Yam','🍠',60,'kg'],['Turnip','🥬',50,'kg'],['Beetroot','🫜',60,'kg'],['Sweet Potato','🍠',50,'kg'],['Beans','🫘',70,'kg'],['Apple Gourd','🥒',60,'kg'],['Cucumber','🥒',40,'kg'],['Bitter Gourd','🥒',60,'kg'],['Bottle Gourd','🥒',40,'pc'],['Mint','🌿',15,'bunch'],['Spinach','🥬',20,'bunch'],['Coriander','🌿',10,'bunch'],['Pumpkin','🎃',40,'kg'],['Squash','🎃',50,'kg']].map(x=>({name:x[0],emoji:x[1],price:x[2],unit:x[3],stock:true}));let products=base,cart={};function render(){grid.innerHTML='';products.filter(p=>p.stock!==false).forEach(p=>{let d=document.createElement('div');d.className='card';d.innerHTML='<div class="emoji">'+(p.emoji||'🥬')+'</div><h3>'+p.name+'</h3><div class="price">₹'+p.price+' / '+(p.unit||'kg')+'</div><button class="btn">Add to Cart</button>';d.querySelector('button').onclick=()=>{cart[p.name]=(cart[p.name]||0)+1;count.textContent='Cart: '+Object.values(cart).reduce((a,b)=>a+b,0)};grid.appendChild(d)})}window.orderNow=()=>{let a=Object.entries(cart);if(!a.length)return alert('Please add product to cart');let m='Hello Fresh Vegetable, I want to order:\n'+a.map(x=>'- '+x[0]+' x '+x[1]).join('\n');location.href='https://wa.me/916290796633?text='+encodeURIComponent(m)};render();onSnapshot(collection(db,'Product'),s=>{let m=new Map(base.map(x=>[x.name.toLowerCase(),{...x}]));s.forEach(d=>{let x=d.data(),n=x.name||d.id;m.set(n.toLowerCase(),{...(m.get(n.toLowerCase())||{}),...x,name:n})});products=[...m.values()];render()},()=>{});</script></body></html>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fresh Vegetable</title>
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#f5f8f3;color:#17321d}
+header{background:#168348;color:white;padding:16px;text-align:center}
+.hero{text-align:center;padding:24px;background:#e9f8ec}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:15px}
+.card{background:white;padding:10px;border-radius:14px;text-align:center;box-shadow:0 2px 10px #0001;overflow:hidden}
+.product-img{width:100%;height:130px;object-fit:cover;border-radius:11px;background:#eee}
+.price{font-weight:bold;color:#168348;margin:8px}
+.btn{border:0;background:#168348;color:white;padding:10px;border-radius:8px;font-weight:bold}
+.cart{text-align:center;position:sticky;bottom:0;background:white;padding:12px;box-shadow:0 -2px 8px #0002}
+footer{background:#12351f;color:white;text-align:center;padding:20px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+
+<body>
+
+<header><h2>🌿 Fresh Vegetable</h2></header>
+
+<div class="hero">
+<h1>Fresh Vegetables at Your Doorstep</h1>
+<p>🌿 Fresh • Safe • Reliable</p>
+<p>🚚 5 KM পর্যন্ত No Delivery Charge</p>
+</div>
+
+<div id="grid" class="grid"></div>
+
+<div class="cart">
+<b id="count">Cart: 0</b>
+<button class="btn" onclick="orderNow()">Order on WhatsApp</button>
+</div>
+
+<footer>📞 WhatsApp: 6290796633</footer>
+
+<script type="module">
+
+import{initializeApp}from'https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js';
+import{getFirestore,collection,onSnapshot}from'https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js';
+
+const cfg={
+apiKey:'AIzaSyDid8kMizol8IuKas7t-5GGOGKdB-HZFoA',
+authDomain:'fresh-vegetables-c5c76.firebaseapp.com',
+projectId:'fresh-vegetables-c5c76',
+storageBucket:'fresh-vegetables-c5c76.firebasestorage.app',
+messagingSenderId:'833704851091',
+appId:'1:833704851091:web:2bb80682ea5c36c9b7bf66'
+};
+
+const db=getFirestore(initializeApp(cfg));
+
+const base=[
+['Potato','https://loremflickr.com/500/400/potato,vegetable',30,'kg'],
+['Tomato','https://loremflickr.com/500/400/tomato,vegetable',40,'kg'],
+['Onion','https://loremflickr.com/500/400/onion,vegetable',35,'kg'],
+['Carrot','https://loremflickr.com/500/400/carrot,vegetable',60,'kg'],
+['Brinjal','https://loremflickr.com/500/400/eggplant,vegetable',45,'kg'],
+['Cauliflower','https://loremflickr.com/500/400/cauliflower,vegetable',50,'pc'],
+['Broccoli','https://loremflickr.com/500/400/broccoli,vegetable',80,'pc'],
+['Cabbage','https://loremflickr.com/500/400/cabbage,vegetable',35,'pc'],
+['Capsicum','https://loremflickr.com/500/400/bellpepper,vegetable',80,'kg'],
+['Chilli','https://loremflickr.com/500/400/chilli,pepper',80,'kg'],
+['Radish','https://loremflickr.com/500/400/radish,vegetable',50,'kg'],
+['Corn','https://loremflickr.com/500/400/corn,vegetable',40,'pc'],
+['Ginger','https://loremflickr.com/500/400/ginger,root',120,'kg'],
+['Okra','https://loremflickr.com/500/400/okra,vegetable',60,'kg'],
+['Peas','https://loremflickr.com/500/400/greenpeas,vegetable',80,'kg'],
+['Garlic','https://loremflickr.com/500/400/garlic,vegetable',160,'kg'],
+['Mushroom','https://loremflickr.com/500/400/mushroom,vegetable',60,'pack'],
+['Taro','https://loremflickr.com/500/400/taro,root',60,'kg'],
+['Yam','https://loremflickr.com/500/400/yam,vegetable',60,'kg'],
+['Turnip','https://loremflickr.com/500/400/turnip,vegetable',50,'kg'],
+['Beetroot','https://loremflickr.com/500/400/beetroot,vegetable',60,'kg'],
+['Sweet Potato','https://loremflickr.com/500/400/sweetpotato,vegetable',50,'kg'],
+['Beans','https://loremflickr.com/500/400/greenbeans,vegetable',70,'kg'],
+['Apple Gourd','https://loremflickr.com/500/400/gourd,vegetable',60,'kg'],
+['Cucumber','https://loremflickr.com/500/400/cucumber,vegetable',40,'kg'],
+['Bitter Gourd','https://loremflickr.com/500/400/bittergourd,vegetable',60,'kg'],
+['Bottle Gourd','https://loremflickr.com/500/400/bottlegourd,vegetable',40,'pc'],
+['Mint','https://loremflickr.com/500/400/mint,leaves',15,'bunch'],
+['Spinach','https://loremflickr.com/500/400/spinach,vegetable',20,'bunch'],
+['Coriander','https://loremflickr.com/500/400/coriander,leaves',10,'bunch'],
+['Pumpkin','https
