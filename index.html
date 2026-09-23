@@ -1,4 +1,234 @@
 <!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fresh Vegetable</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#f4f8f2;
+ color:#17351f
+}
+header{
+ background:#167b43;
+ color:white;
+ padding:18px;
+ text-align:center
+}
+header h2{margin:0}
+.hero{
+ text-align:center;
+ padding:25px 15px;
+ background:#e8f7e9
+}
+.hero h1{margin:0 0 8px;font-size:27px}
+.hero p{margin:7px}
+.grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:12px;
+ padding:14px;
+ max-width:1000px;
+ margin:auto
+}
+.card{
+ background:white;
+ border-radius:15px;
+ padding:12px;
+ text-align:center;
+ box-shadow:0 3px 12px #0001
+}
+.pic{
+ height:95px;
+ border-radius:12px;
+ background:#edf7ea;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:58px
+}
+.card h3{margin:9px 0 4px}
+.price{
+ font-weight:bold;
+ color:#167b43;
+ margin:6px
+}
+.qty{
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ gap:8px;
+ margin-top:9px
+}
+.qty button{
+ border:0;
+ border-radius:8px;
+ padding:9px 12px;
+ font-weight:bold
+}
+.add{
+ border:0;
+ border-radius:8px;
+ padding:10px;
+ font-weight:bold;
+ background:#167b43;
+ color:white;
+ width:100%;
+ margin-top:9px
+}
+.out{opacity:.5}
+.cart{
+ position:sticky;
+ bottom:0;
+ background:white;
+ padding:12px 14px;
+ box-shadow:0 -3px 12px #0002;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px
+}
+.wa{
+ border:0;
+ background:#128c4a;
+ color:white;
+ padding:12px 15px;
+ border-radius:10px;
+ font-weight:bold
+}
+footer{
+ background:#12351f;
+ color:white;
+ text-align:center;
+ padding:18px
+}
+@media(min-width:700px){
+ .grid{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>🌿 Fresh Vegetable</h2>
+</header>
+
+<section class="hero">
+<h1>Fresh Vegetables at Your Doorstep</h1>
+<p>🌿 Fresh • Safe • Reliable</p>
+<p>🚚 5 KM পর্যন্ত No Delivery Charge</p>
+</section>
+
+<main id="grid" class="grid">
+Loading products...
+</main>
+
+<div class="cart">
+<div>
+<b id="count">Cart: 0 items</b><br>
+<span id="total">Total: ₹0</span>
+</div>
+
+<button class="wa" id="order">
+WhatsApp Order
+</button>
+</div>
+
+<footer>
+📞 WhatsApp: 6290796633<br>
+🙏 অর্ডারের জন্য মেসেজ করুন
+</footer>
+
+<script>
+
+const BASE =
+"https://firestore.googleapis.com/v1/projects/fresh-vegetables-c5c76/databases/(default)/documents/Product";
+
+const fallback = [
+["Potato",30,"kg","🥔"],
+["Tomato",40,"kg","🍅"],
+["Onion",35,"kg","🧅"],
+["Carrot",60,"kg","🥕"],
+["Brinjal",45,"kg","🍆"],
+["Cauliflower",50,"pc","🥦"],
+["Cabbage",35,"pc","🥬"],
+["Capsicum",80,"kg","🫑"],
+["Chilli",80,"kg","🌶️"],
+["Cucumber",40,"kg","🥒"],
+["Garlic",160,"kg","🧄"],
+["Mushroom",60,"pack","🍄"],
+["Corn",40,"pc","🌽"],
+["Spinach",20,"bunch","🥬"],
+["Coriander",10,"bunch","🌿"],
+["Pumpkin",40,"kg","🎃"]
+].map((x,i)=>({
+ id:"f"+i,
+ name:x[0],
+ price:x[1],
+ unit:x[2],
+ emoji:x[3],
+ stock:true
+}));
+
+let products=[];
+let cart={};
+
+const $=id=>document.getElementById(id);
+
+const val=f=>
+ f?.stringValue ??
+ (f?.integerValue!==undefined
+ ? Number(f.integerValue)
+ : (f?.doubleValue!==undefined
+ ? Number(f.doubleValue)
+ : (f?.booleanValue!==undefined
+ ? f.booleanValue:"")));
+
+function render(){
+
+ let grid=$("grid");
+
+ grid.innerHTML=products.map(p=>`
+
+ <div class="card ${p.stock===false?"out":""}">
+
+ <div class="pic">
+ ${p.emoji||"🥬"}
+ </div>
+
+ <h3>${p.name}</h3>
+
+ <div class="price">
+ ₹${p.price} / ${p.unit}
+ </div>
+
+ ${
+ p.stock===false
+ ? "<b>Out of stock</b>"
+ :
+ `
+ <div class="qty">
+
+ <button onclick="change('${p.id}',-1)">
+ −
+ </button>
+
+ <b>${cart[p.id]||0}</b>
+
+ <button onclick="change('${p.id}',1)">
+ +
+ </button>
+
+ </div>
+
+ <button
+ class="add"
+ onclick="change('${ html>
 <html>
 <head>
 <meta charset="utf-8">
