@@ -1,8 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fresh Vegetable</title>
 
 <style>
@@ -11,30 +11,160 @@ body{
  margin:0;
  font-family:Arial,sans-serif;
  background:#f4f8f2;
- color:#17351f
+ color:#17351f;
 }
 header{
  background:#167b43;
  color:white;
+ text-align:center;
  padding:18px;
- text-align:center
 }
-header h2{margin:0}
+header h1{margin:0;font-size:28px}
 .hero{
  text-align:center;
- padding:25px 15px;
- background:#e8f7e9
+ padding:22px 12px;
+ background:#e8f7e9;
 }
-.hero h1{margin:0 0 8px;font-size:27px}
-.hero p{margin:7px}
-.grid{
+.hero h2{margin:0 0 10px}
+.hero p{margin:6px}
+.products{
  display:grid;
  grid-template-columns:repeat(2,1fr);
  gap:12px;
  padding:14px;
  max-width:1000px;
- margin:auto
+ margin:auto;
 }
+.card{
+ background:white;
+ padding:12px;
+ border-radius:15px;
+ text-align:center;
+ box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+.pic{
+ height:90px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:55px;
+ background:#edf7ea;
+ border-radius:12px;
+}
+.card h3{
+ margin:10px 0 5px;
+}
+.price{
+ color:#167b43;
+ font-weight:bold;
+ margin-bottom:8px;
+}
+.controls{
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ gap:10px;
+}
+.controls button{
+ border:none;
+ padding:9px 13px;
+ border-radius:8px;
+ font-size:18px;
+ font-weight:bold;
+}
+.add{
+ width:100%;
+ margin-top:9px;
+ border:none;
+ padding:10px;
+ border-radius:8px;
+ background:#167b43;
+ color:white;
+ font-weight:bold;
+}
+.cart{
+ position:sticky;
+ bottom:0;
+ background:white;
+ padding:12px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ box-shadow:0 -3px 12px rgba(0,0,0,.15);
+}
+.order{
+ background:#25D366;
+ color:white;
+ border:none;
+ border-radius:10px;
+ padding:13px 16px;
+ font-weight:bold;
+}
+footer{
+ text-align:center;
+ background:#12351f;
+ color:white;
+ padding:20px;
+}
+@media(min-width:700px){
+ .products{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🌿 Fresh Vegetable</h1>
+</header>
+
+<section class="hero">
+<h2>Fresh Vegetables at Your Doorstep</h2>
+<p>🌿 Fresh • Safe • Reliable</p>
+<p>🚚 5 KM পর্যন্ত No Delivery Charge</p>
+<p>📱 WhatsApp: 6290796633</p>
+</section>
+
+<div class="products" id="products"></div>
+
+<div class="cart">
+<div>
+<b id="items">Cart: 0 items</b><br>
+<span id="total">Total: ₹0</span>
+</div>
+<button class="order" onclick="orderNow()">WhatsApp Order</button>
+</div>
+
+<footer>
+Fresh Vegetable<br>
+Fresh vegetables home delivery<br>
+📞 6290796633
+</footer>
+
+<script>
+const products = [
+ {name:"Potato",price:30,unit:"kg",emoji:"🥔"},
+ {name:"Tomato",price:40,unit:"kg",emoji:"🍅"},
+ {name:"Onion",price:35,unit:"kg",emoji:"🧅"},
+ {name:"Carrot",price:60,unit:"kg",emoji:"🥕"},
+ {name:"Brinjal",price:45,unit:"kg",emoji:"🍆"},
+ {name:"Cauliflower",price:50,unit:"pc",emoji:"🥦"},
+ {name:"Cabbage",price:35,unit:"pc",emoji:"🥬"},
+ {name:"Capsicum",price:80,unit:"kg",emoji:"🫑"},
+ {name:"Green Chilli",price:80,unit:"kg",emoji:"🌶️"},
+ {name:"Cucumber",price:40,unit:"kg",emoji:"🥒"},
+ {name:"Garlic",price:160,unit:"kg",emoji:"🧄"},
+ {name:"Mushroom",price:60,unit:"pack",emoji:"🍄"},
+ {name:"Corn",price:40,unit:"pc",emoji:"🌽"},
+ {name:"Spinach",price:20,unit:"bunch",emoji:"🥬"},
+ {name:"Coriander",price:10,unit:"bunch",emoji:"🌿"},
+ {name:"Pumpkin",price:40,unit:"kg",emoji:"🎃"}
+];
+
+let cart = {};
+
+function showProducts(){
+ const}
 .card{
  background:white;
  border-radius:15px;
