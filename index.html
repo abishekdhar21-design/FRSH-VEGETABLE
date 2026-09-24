@@ -4,34 +4,123 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Fresh Vegetable</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f5f8f3;color:#17351f}
-header{background:#168348;color:#fff;text-align:center;padding:18px}
-header h1{margin:0}
-.hero{text-align:center;background:#e8f7e9;padding:20px 10px}
-.hero h2{margin:5px}
-.hero p{margin:7px}
-.products{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:12px;max-width:1000px;margin:auto}
-.card{background:#fff;border-radius:14px;padding:10px;text-align:center;box-shadow:0 2px 8px #0002}
-.pic{font-size:52px;background:#eef8ec;border-radius:12px;padding:12px}
-.card h3{margin:8px 0 4px}
-.price{font-weight:bold;color:#168348;font-size:18px}
-button{border:0;cursor:pointer}
-.add{width:100%;background:#168348;color:white;padding:10px;margin-top:9px;border-radius:8px;font-weight:bold}
-.cart{background:white;margin:15px;padding:15px;border-radius:14px;box-shadow:0 2px 8px #0002}
-.cart h2{margin-top:0}
-.item{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ddd;padding:10px 0}
-.qty button{background:#168348;color:white;width:30px;height:30px;border-radius:6px;font-size:18px}
-.total{font-size:21px;font-weight:bold;margin:15px 0}
-.wa{display:block;background:#25D366;color:white;text-align:center;text-decoration:none;padding:14px;border-radius:10px;font-weight:bold;font-size:18px}
-footer{text-align:center;background:#12351f;color:#fff;padding:18px;margin-top:15px}
-@media(min-width:700px){.products{grid-template-columns:repeat(4,1fr)}}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#f4f8f2;
+ color:#17351f;
+}
+header{
+ background:#168348;
+ color:white;
+ text-align:center;
+ padding:18px;
+}
+.hero{
+ background:#e5f6e4;
+ text-align:center;
+ padding:28px 10px;
+}
+.hero h2{margin:5px;font-size:28px}
+.hero p{margin:8px}
+
+.products{
+ max-width:1000px;
+ margin:auto;
+ padding:14px;
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:12px;
+}
+.card{
+ background:white;
+ border-radius:15px;
+ padding:14px;
+ text-align:center;
+ box-shadow:0 2px 8px #0002;
+}
+.pic{
+ font-size:55px;
+ padding:15px;
+ background:#eef8ec;
+ border-radius:12px;
+}
+.card h3{margin:8px 0 3px}
+.price{
+ color:#168348;
+ font-size:18px;
+ font-weight:bold;
+}
+.add{
+ width:100%;
+ margin-top:9px;
+ padding:11px;
+ border:0;
+ border-radius:8px;
+ background:#168348;
+ color:white;
+ font-weight:bold;
+}
+
+.cart{
+ background:white;
+ max-width:700px;
+ margin:15px auto 50px;
+ padding:16px;
+ border-radius:15px;
+ box-shadow:0 2px 8px #0002;
+}
+.item{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ padding:10px 0;
+ border-bottom:1px solid #ddd;
+}
+.qty button{
+ background:#168348;
+ color:white;
+ border:0;
+ width:30px;
+ height:30px;
+ border-radius:6px;
+}
+.total{
+ font-size:21px;
+ font-weight:bold;
+ margin:15px 0;
+}
+.whatsapp{
+ display:block;
+ background:#25D366;
+ color:white;
+ text-align:center;
+ padding:14px;
+ border-radius:10px;
+ text-decoration:none;
+ font-weight:bold;
+}
+footer{
+ background:#12351f;
+ color:white;
+ text-align:center;
+ padding:20px;
+}
+
+@media(min-width:700px){
+ .products{grid-template-columns:repeat(4,1fr)}
+}
 </style>
 </head>
+
 <body>
 
-<header><h1>🌿 Fresh Vegetable</h1></header>
+<header>
+<h1>🌿 Fresh Vegetable</h1>
+</header>
 
 <section class="hero">
 <h2>Fresh Vegetables at Your Doorstep</h2>
@@ -45,33 +134,136 @@ footer{text-align:center;background:#12351f;color:#fff;padding:18px;margin-top:1
 <section class="cart">
 <h2>🛒 Your Cart</h2>
 <div id="cart">Cart is empty</div>
-<div class="total">Total: ₹<span id="total">0</span></div>
-<a class="wa" href="#" onclick="orderWhatsApp()">💬 Order on WhatsApp</a>
+<div class="total">
+Total: ₹<span id="total">0</span>
+</div>
+<a class="whatsapp" href="#" onclick="order()">
+💬 Order on WhatsApp
+</a>
 </section>
 
 <footer>
 Fresh Vegetable<br>
-Home Delivery<br>
-📞 6290796633
+Home Delivery • 6290796633
 </footer>
 
 <script>
 const products=[
-["🥕","Carrot",60],
-["🫜","Beetroot",50],
-["🔴","Radish",40],
-["🥔","Potato",30],
-["🍠","Sweet Potato",50],
-["🥬","Spinach",25],
-["🥬","Lettuce",60],
-["🥬","Cabbage",40],
-["🍅","Tomato",40],
-["🫑","Bell Pepper",80],
-["🌶️","Chilli Pepper",70],
-["🍆","Eggplant",45],
-["🥒","Cucumber",40],
-["🥒","Zucchini",70],
-["🎃","Pumpkin",40],
-["🥒","Okra",60],
-["🥒","Bitter Gourd",60],
-["🥦","Broccoli",
+["🥔","আলু",30],
+["🍅","টমেটো",40],
+["🧅","পেঁয়াজ",35],
+["🥕","গাজর",60],
+["🫑","ক্যাপসিকাম",80],
+["🥦","ব্রকোলি",100],
+["🥬","বাঁধাকপি",35],
+["🍆","বেগুন",45],
+["🥒","লাউ",40],
+["🥒","করলা",60],
+["🍠","মিষ্টি আলু",50],
+["🫚","আদা",120],
+["🌿","ঢেঁড়স",60],
+["🧄","রসুন",160],
+["🥒","ঝিঙে",60],
+["🌿","বরবটি",70],
+["🥒","চিচিঙ্গা",50],
+["🌿","পুদিনা পাতা",20],
+["🎃","কুমড়ো",40],
+["🥒","পটল",60],
+["🥒","শসা",40]
+];
+
+let cart={};
+
+function showProducts(){
+ document.getElementById("products").innerHTML=
+ products.map((p,i)=>`
+ <div class="card">
+  <div class="pic">${p[0]}</div>
+  <h3>${p[1]}</h3>
+  <div class="price">₹${p[2]} / kg</div>
+  <button class="add" onclick="add(${i})">
+   Add to Cart
+  </button>
+ </div>
+ `).join("");
+}
+
+function add(i){
+ cart[i]=(cart[i]||0)+1;
+ showCart();
+}
+
+function change(i,n){
+ cart[i]+=n;
+ if(cart[i]<=0) delete cart[i];
+ showCart();
+}
+
+function showCart(){
+ let keys=Object.keys(cart);
+
+ if(!keys.length){
+  document.getElementById("cart").innerHTML="Cart is empty";
+  document.getElementById("total").innerText="0";
+  return;
+ }
+
+ let total=0;
+
+ document.getElementById("cart").innerHTML=
+ keys.map(i=>{
+  let p=products[i];
+  let q=cart[i];
+  total+=p[2]*q;
+
+  return `
+  <div class="item">
+   <span>
+    <b>${p[1]}</b><br>
+    ₹${p[2]} × ${q}
+   </span>
+
+   <span class="qty">
+    <button onclick="change(${i},-1)">−</button>
+    <b>${q}</b>
+    <button onclick="change(${i},1)">+</button>
+   </span>
+  </div>`;
+ }).join("");
+
+ document.getElementById("total").innerText=total;
+}
+
+function order(){
+ let keys=Object.keys(cart);
+
+ if(!keys.length){
+  alert("আগে সবজি Add to Cart করুন");
+  return;
+ }
+
+ let total=0;
+ let message="Hello Fresh Vegetable,\n\nআমার অর্ডার:\n";
+
+ keys.forEach(i=>{
+  let p=products[i];
+  let q=cart[i];
+  let amount=p[2]*q;
+  total+=amount;
+
+  message+=p[1]+" - "+q+" kg - ₹"+amount+"\n";
+ });
+
+ message+="\nTotal: ₹"+total;
+
+ window.location.href=
+ "https://wa.me/916290796633?text="+
+ encodeURIComponent(message);
+}
+
+showProducts();
+showCart();
+</script>
+
+</body>
+</html>
